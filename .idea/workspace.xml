@@ -4,32 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35c3d195-67ab-49f7-9162-a9ef02a45543" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/1-todolist.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/1-todolist.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+    <list default="true" id="6b372a7f-bb6e-4a2b-8c3e-6fdb00be7028" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/.idea/hws2-master.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/src/s2-homeworks/hw01/HW1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/src/s2-homeworks/hw01/HW1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/src/s2-homeworks/hw01/message/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/src/s2-homeworks/hw01/message/Message.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2LAijhgilyydRjvNtqomBQcoQIk" />
+  <component name="ProjectId" id="2LE1ncm16V2C07G9tfedmMohXup" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,18 +29,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/it-incubator/hws2-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "D:\\it-incubator\\1-todolist\\node_modules\\typescript\\lib",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -60,26 +52,31 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="35c3d195-67ab-49f7-9162-a9ef02a45543" name="Changes" comment="" />
-      <created>1675320426131</created>
+      <changelist id="6b372a7f-bb6e-4a2b-8c3e-6fdb00be7028" name="Changes" comment="" />
+      <created>1675421596487</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1675320426131</updated>
-      <workItem from="1675320428552" duration="8439000" />
-      <workItem from="1675333479316" duration="373000" />
+      <updated>1675421596487</updated>
+      <workItem from="1675421598158" duration="679000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
