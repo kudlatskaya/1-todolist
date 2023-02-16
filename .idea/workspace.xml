@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="35c3d195-67ab-49f7-9162-a9ef02a45543" name="Changes" comment="deleted idea">
+=======
+    <list default="true" id="6b372a7f-bb6e-4a2b-8c3e-6fdb00be7028" name="Changes" comment="">
+>>>>>>> origin/main
       <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/.idea/hws2-master.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../..//it-incubator/hws2-master/hws2-master/package.json" afterDir="false" />
@@ -16,26 +20,24 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../" />
+<<<<<<< HEAD
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LAijhgilyydRjvNtqomBQcoQIk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+=======
+  </component>
+  <component name="ProjectId" id="2LE1ncm16V2C07G9tfedmMohXup" />
+>>>>>>> origin/main
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -83,6 +85,27 @@
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+>>>>>>> origin/main
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -92,6 +115,7 @@
       <envs />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <recent_temporary>
       <list>
         <item itemvalue="npm.start (1)" />
@@ -100,18 +124,25 @@
         <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
+=======
+>>>>>>> origin/main
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="35c3d195-67ab-49f7-9162-a9ef02a45543" name="Changes" comment="" />
-      <created>1675320426131</created>
+      <changelist id="6b372a7f-bb6e-4a2b-8c3e-6fdb00be7028" name="Changes" comment="" />
+      <created>1675421596487</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1675320426131</updated>
       <workItem from="1675320428552" duration="8439000" />
       <workItem from="1675333479316" duration="5065000" />
       <workItem from="1675665426294" duration="21000" />
+=======
+      <updated>1675421596487</updated>
+      <workItem from="1675421598158" duration="679000" />
+>>>>>>> origin/main
     </task>
     <task id="LOCAL-00001" summary="changed homepage">
       <created>1675333861266</created>
@@ -133,9 +164,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <MESSAGE value="deleted idea" />
     <MESSAGE value="changed homepage" />
     <option name="LAST_COMMIT_MESSAGE" value="changed homepage" />
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+>>>>>>> origin/main
   </component>
 </project>
