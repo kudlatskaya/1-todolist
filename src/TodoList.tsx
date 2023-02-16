@@ -1,4 +1,4 @@
-import React, {RefObject, useRef, useState} from 'react';
+import React, {ChangeEvent, RefObject, useRef, useState} from 'react';
 import TasksList from "./TasksList";
 import {FilterValuesType} from "./App";
 
@@ -28,6 +28,8 @@ const TodoList = (props: TotoListPropsType) => {
 
     const [ title, setTitle ] = useState<string>('')
 
+    const changeLocalTitle = (e:ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+
     const addTask = () => {
         const trimmedTitle = title.trim()
         if(trimmedTitle) {
@@ -35,6 +37,12 @@ const TodoList = (props: TotoListPropsType) => {
         }
         setTitle('')
     }
+
+    const onKeyDownAddTask = (e:React.KeyboardEvent<HTMLInputElement>) => {e.key === 'Enter' && addTask()}
+
+    const setAllFilterValue = () => props.changeFilterValue('all')
+    const setActiveFilterValue = () => props.changeFilterValue('active')
+    const setCompletedFilterValue = () => props.changeFilterValue('completed')
 
     return (
         <div className={'todolist'}>
@@ -44,15 +52,23 @@ const TodoList = (props: TotoListPropsType) => {
                 {/*<button onClick={addTask}>+</button>*/}
                 <input
                     value={title}
-                    onChange={(e) => setTitle(e.currentTarget.value)}/>
-                <button disabled={title.length === 0} onClick={addTask}>+</button>
+                    onChange={changeLocalTitle}
+                    onKeyDown={onKeyDownAddTask}
+                />
+                <button
+                    disabled={title.length === 0}
+                    onClick={addTask}>+
+                </button>
+
                 {title.length > 15 && <div style={{color: 'hotpink'}}>Task title is to long</div>}
             </div>
+
             <TasksList tasks={props.tasks} removeTask={props.removeTask}/>
+
             <div>
-                <button onClick={() => props.changeFilterValue('all')}>All</button>
-                <button onClick={() => props.changeFilterValue('active')}>Active</button>
-                <button onClick={() => props.changeFilterValue('completed')}>Completed</button>
+                <button onClick={setAllFilterValue}>All</button>
+                <button onClick={setActiveFilterValue}>Active</button>
+                <button onClick={setCompletedFilterValue}>Completed</button>
             </div>
         </div>
     );

@@ -10,11 +10,13 @@ const TasksList = (props: TasksListPropsType) => {
 
     const tasksItems = props.tasks.length
         ? props.tasks.map((task) => {
+            const removeTask = () => props.removeTask(task.id);
+
             return (
                 <li key={task.id}>
                     <input type="checkbox" checked={task.isDone}/>
                     <span>{task.title}</span>
-                    <button onClick={() => props.removeTask(task.id)}>x</button>
+                    <button onClick={removeTask}>x</button>
                 </li>
             )
         })
