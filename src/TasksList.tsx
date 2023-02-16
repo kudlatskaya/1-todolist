@@ -2,7 +2,8 @@ import React from 'react';
 import {TaskType} from "./TodoList";
 
 type TasksListPropsType = {
-    tasks: Array<TaskType>
+    tasks: Array<TaskType>,
+    removeTask: (taskId: string) => void,
 }
 
 const TasksList = (props: TasksListPropsType) => {
@@ -13,6 +14,7 @@ const TasksList = (props: TasksListPropsType) => {
                 <li key={task.id}>
                     <input type="checkbox" checked={task.isDone}/>
                     <span>{task.title}</span>
+                    <button onClick={() => props.removeTask(task.id)}>x</button>
                 </li>
             )
         })
