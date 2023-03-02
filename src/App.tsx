@@ -61,6 +61,7 @@ return (
         <TodoList
             title={todoListTitle}
             tasks={filteredTasks}
+            filter={filter}
             changeFilterValue={changeFilterValue}
             removeTask={removeTask}
             addTask={addTask}

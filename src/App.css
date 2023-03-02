@@ -21,3 +21,30 @@
   text-decoration: line-through;
   opacity: 0.5;
 }
+
+.active-filter-btn {
+  background-color: hotpink;
+  font-weight: bold;
+  color: #FFFFFF;
+  border: 2px solid hotpink;
+  border-radius: 5px;
+}
+
+.filter-btn {
+  background-color: cornflowerblue;
+  font-weight: bold;
+  color: #FFFFFF;
+  border: 2px solid cornflowerblue;
+  border-radius: 5px;
+}
+
+.filter-btn-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-error {
+  border: 2px solid hotpink;
+  outline: none;
+}

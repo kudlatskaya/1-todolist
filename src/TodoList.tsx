@@ -4,6 +4,7 @@ import {FilterValuesType} from "./App";
 
 type TotoListPropsType = {
     title: string,
+    filter: FilterValuesType,
     tasks: Array<TaskType>,
     changeFilterValue: (filter: FilterValuesType) => void,
     removeTask: (taskId: string) => void,
@@ -28,13 +29,21 @@ const TodoList = (props: TotoListPropsType) => {
     // }
 
     const [ title, setTitle ] = useState<string>('')
+    const [ error, setError ] = useState<boolean>(false)
+    const maxLengthUserMessage = 15
+    const isUserMessageToLong = title.length > maxLengthUserMessage
 
-    const changeLocalTitle = (e:ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+    const changeLocalTitle = (e:ChangeEvent<HTMLInputElement>) => {
+        error && setError(false)
+        setTitle(e.currentTarget.value)
+    }
 
     const addTask = () => {
         const trimmedTitle = title.trim()
         if(trimmedTitle) {
-            props.addTask(title)
+            props.addTask(trimmedTitle)
+        } else {
+            setError(true)
         }
         setTitle('')
     }
@@ -44,6 +53,9 @@ const TodoList = (props: TotoListPropsType) => {
     const setAllFilterValue = () => props.changeFilterValue('all')
     const setActiveFilterValue = () => props.changeFilterValue('active')
     const setCompletedFilterValue = () => props.changeFilterValue('completed')
+    const userMaxLengthMessage = isUserMessageToLong && <div style={{color: 'hotpink'}}>Task title is to long</div>
+    const userErrorMessage = error && <div style={{color: 'hotpink'}}>Title is required!</div>
+    const inputErrorClasses = error || isUserMessageToLong ? 'input-error' : ''
 
     return (
         <div className={'todolist'}>
@@ -53,15 +65,18 @@ const TodoList = (props: TotoListPropsType) => {
                 {/*<button onClick={addTask}>+</button>*/}
                 <input
                     value={title}
+                    placeholder={'Please input title'}
                     onChange={changeLocalTitle}
                     onKeyDown={onKeyDownAddTask}
+                    className={inputErrorClasses}
                 />
                 <button
                     disabled={title.length === 0}
                     onClick={addTask}>+
                 </button>
 
-                {title.length > 15 && <div style={{color: 'hotpink'}}>Task title is to long</div>}
+                {userMaxLengthMessage}
+                {userErrorMessage}
             </div>
 
             <TasksList
@@ -70,10 +85,10 @@ const TodoList = (props: TotoListPropsType) => {
                 changeTaskStatus={props.changeTaskStatus}
             />
 
-            <div>
-                <button onClick={setAllFilterValue}>All</button>
-                <button onClick={setActiveFilterValue}>Active</button>
-                <button onClick={setCompletedFilterValue}>Completed</button>
+            <div className={'filter-btn-container'}>
+                <button className={props.filter === 'all' ? 'active-filter-btn' : 'filter-btn'} onClick={setAllFilterValue}>All</button>
+                <button className={props.filter === 'active' ? 'active-filter-btn' : 'filter-btn'} onClick={setActiveFilterValue}>Active</button>
+                <button className={props.filter === 'completed' ? 'active-filter-btn' : 'filter-btn'} onClick={setCompletedFilterValue}>Completed</button>
             </div>
         </div>
     );
