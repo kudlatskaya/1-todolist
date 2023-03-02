@@ -30,8 +30,8 @@ const TodoList = (props: TotoListPropsType) => {
 
     const [ title, setTitle ] = useState<string>('')
     const [ error, setError ] = useState<boolean>(false)
-    const maxLengthUserMessage = 15
-    const isUserMessageToLong = title.length > maxLengthUserMessage
+    const maxLengthUserMessage: number = 15
+    const isUserMessageToLong: boolean = title.length > maxLengthUserMessage
 
     const changeLocalTitle = (e:ChangeEvent<HTMLInputElement>) => {
         error && setError(false)
@@ -50,12 +50,17 @@ const TodoList = (props: TotoListPropsType) => {
 
     const onKeyDownAddTask = (e:React.KeyboardEvent<HTMLInputElement>) => {e.key === 'Enter' && addTask()}
 
-    const setAllFilterValue = () => props.changeFilterValue('all')
-    const setActiveFilterValue = () => props.changeFilterValue('active')
-    const setCompletedFilterValue = () => props.changeFilterValue('completed')
+    const handlerCreator = (filter: FilterValuesType) => {
+        return () => props.changeFilterValue(filter)
+    }
+    const setAllFilterValue = handlerCreator('all')
+    const setActiveFilterValue = handlerCreator('active')
+    const setCompletedFilterValue = handlerCreator('completed')
+
     const userMaxLengthMessage = isUserMessageToLong && <div style={{color: 'hotpink'}}>Task title is to long</div>
     const userErrorMessage = error && <div style={{color: 'hotpink'}}>Title is required!</div>
     const inputErrorClasses = error || isUserMessageToLong ? 'input-error' : ''
+    const isAddBtnDisabled = title.length === 0
 
     return (
         <div className={'todolist'}>
@@ -71,7 +76,7 @@ const TodoList = (props: TotoListPropsType) => {
                     className={inputErrorClasses}
                 />
                 <button
-                    disabled={title.length === 0}
+                    disabled={isAddBtnDisabled}
                     onClick={addTask}>+
                 </button>
 
