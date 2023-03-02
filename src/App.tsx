@@ -20,7 +20,7 @@ function App() {
         setTasks(tasks.filter(t => t.id !== taskId));
     }
 
-    const addTask = (title:string) => {
+    const addTask = (title: string) => {
         const newTask: TaskType = {
             id: v1(),
             title: title,
@@ -30,35 +30,44 @@ function App() {
         setTasks([newTask, ...tasks])
     }
 
-    const [filter, setFilter] = useState<FilterValuesType>('all');
-
-    const changeFilterValue = (filter: FilterValuesType) => setFilter(filter);
-
-    const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
-        switch(filter) {
-            case 'active':
-                return tasks.filter(t => !t.isDone);
-            case 'completed':
-                return tasks.filter(t => t.isDone);
-            default:
-                return tasks;
-        }
+    const changeTaskStatus = (taskId: string, newIsDone: boolean) => {
+        setTasks( tasks.map(item =>
+                    item.id === taskId
+                        ? {...item, isDone: newIsDone}
+                        : item
+        ))
     }
 
-    const filteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter)
+const [filter, setFilter] = useState<FilterValuesType>('all');
 
-    //UI:
-    return (
-        <div className="App">
-            <TodoList
-                title={todoListTitle}
-                tasks={filteredTasks}
-                changeFilterValue={changeFilterValue}
-                removeTask={removeTask}
-                addTask={addTask}
-            />
-        </div>
-    );
+const changeFilterValue = (filter: FilterValuesType) => setFilter(filter);
+
+const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
+    switch (filter) {
+        case 'active':
+            return tasks.filter(t => !t.isDone);
+        case 'completed':
+            return tasks.filter(t => t.isDone);
+        default:
+            return tasks;
+    }
+}
+
+const filteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter)
+
+//UI:
+return (
+    <div className="App">
+        <TodoList
+            title={todoListTitle}
+            tasks={filteredTasks}
+            changeFilterValue={changeFilterValue}
+            removeTask={removeTask}
+            addTask={addTask}
+            changeTaskStatus={changeTaskStatus}
+        />
+    </div>
+);
 }
 
 export default App;
