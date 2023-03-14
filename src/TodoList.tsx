@@ -11,6 +11,7 @@ type TotoListPropsType = {
     removeTask: (taskId: string, todoListId: string) => void,
     addTask: (title: string, todoListId: string) => void,
     changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
+    removeTodoList: (todoListId: string) => void,
 }
 
 export type TaskType = {
@@ -54,6 +55,11 @@ const TodoList = (props: TotoListPropsType) => {
     const handlerCreator = (filter: FilterValuesType) => {
         return () => props.changeFilterValue(filter, props.id)
     }
+
+    const removeTodoList = () => {
+        props.removeTodoList(props.id)
+    }
+
     const setAllFilterValue = handlerCreator('all')
     const setActiveFilterValue = handlerCreator('active')
     const setCompletedFilterValue = handlerCreator('completed')
@@ -65,7 +71,9 @@ const TodoList = (props: TotoListPropsType) => {
 
     return (
         <div className={'todolist'}>
-            <h3>{props.title}</h3>
+            <h3>{props.title}
+                <button onClick={removeTodoList}>x</button>
+            </h3>
             <div>
                 {/*<input ref={addTaskInput}/>*/}
                 {/*<button onClick={addTask}>+</button>*/}
