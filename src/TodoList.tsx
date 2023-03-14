@@ -3,13 +3,14 @@ import TasksList from "./TasksList";
 import {FilterValuesType} from "./App";
 
 type TotoListPropsType = {
+    id: string,
     title: string,
     filter: FilterValuesType,
     tasks: Array<TaskType>,
-    changeFilterValue: (filter: FilterValuesType) => void,
-    removeTask: (taskId: string) => void,
-    addTask: (title: string) => void,
-    changeTaskStatus: (taskId: string, isDone: boolean) => void,
+    changeFilterValue: (filter: FilterValuesType, todoListId: string) => void,
+    removeTask: (taskId: string, todoListId: string) => void,
+    addTask: (title: string, todoListId: string) => void,
+    changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
 }
 
 export type TaskType = {
@@ -41,7 +42,7 @@ const TodoList = (props: TotoListPropsType) => {
     const addTask = () => {
         const trimmedTitle = title.trim()
         if(trimmedTitle) {
-            props.addTask(trimmedTitle)
+            props.addTask(trimmedTitle, props.id)
         } else {
             setError(true)
         }
@@ -51,7 +52,7 @@ const TodoList = (props: TotoListPropsType) => {
     const onKeyDownAddTask = (e:React.KeyboardEvent<HTMLInputElement>) => {e.key === 'Enter' && addTask()}
 
     const handlerCreator = (filter: FilterValuesType) => {
-        return () => props.changeFilterValue(filter)
+        return () => props.changeFilterValue(filter, props.id)
     }
     const setAllFilterValue = handlerCreator('all')
     const setActiveFilterValue = handlerCreator('active')
@@ -85,6 +86,7 @@ const TodoList = (props: TotoListPropsType) => {
             </div>
 
             <TasksList
+                id={props.id}
                 tasks={props.tasks}
                 removeTask={props.removeTask}
                 changeTaskStatus={props.changeTaskStatus}
