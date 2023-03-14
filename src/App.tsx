@@ -15,19 +15,10 @@ type TodoListType = {
 type TasksStateType = {
     // [key type]: value type
     [key: string]: TaskType[],
-
 }
 
 function App() {
-    console.log(v1())
     //BLL:
-    // const todoListTitle: string = 'What to learn';
-
-    // const [tasks, setTasks] = useState<Array<TaskType>>([
-    //     {id: v1(), title: "HTML & CSS", isDone: true},
-    //     {id: v1(), title: "ES6 & TS", isDone: true},
-    //     {id: v1(), title: "React & Redux", isDone: false},
-    // ])
     let todoListId1 = v1();
     let todoListId2 = v1();
 
@@ -62,10 +53,8 @@ function App() {
             isDone: false,
         }
 
-        // setTasks([newTask, ...tasks])
         let newTodoList = [newTask, ...tasks[todoListId]]
         tasks[todoListId] = newTodoList;
-        // tasks[todoListId].push(newTask);
         setTasks({...tasks})
     }
 
@@ -82,10 +71,7 @@ function App() {
         setTasks({...tasks})
     }
 
-// const [filter, setFilter] = useState<FilterValuesType>('all');
-
     const changeFilterValue = (filter: FilterValuesType, todoListId: string) => {
-        // setFilter(filter);
         let todoList = todoLists.find(item => item.id == todoListId)
 
         if (todoList) {
@@ -113,8 +99,6 @@ function App() {
         setTasks({...tasks})
     }
 
-// let filteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter)
-
     const addTodoList = (title: string) => {
         let todoList: TodoListType = {
             id: v1(),
@@ -125,6 +109,7 @@ function App() {
         setTodoLists([todoList, ...todoLists])
         setTasks({...tasks, [todoList.id]: []})
     }
+
 //UI:
     return (
         <div className="App">
