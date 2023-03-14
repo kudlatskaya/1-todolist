@@ -12,6 +12,12 @@ type TodoListType = {
     filter: FilterValuesType,
 }
 
+type TasksStateType = {
+    // [key type]: value type
+    [key: string]: TaskType[],
+
+}
+
 function App() {
     console.log(v1())
     //BLL:
@@ -30,7 +36,7 @@ function App() {
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = useState({
+    let [tasks, setTasks] = useState<TasksStateType>({
         [todoListId1]: [
             {id: v1(), title: "HTML & CSS", isDone: true},
             {id: v1(), title: "ES6 & TS", isDone: true},
@@ -60,7 +66,7 @@ function App() {
         let newTodoList = [newTask, ...tasks[todoListId]]
         tasks[todoListId] = newTodoList;
         // tasks[todoListId].push(newTask);
-        setTasks({ ...tasks})
+        setTasks({...tasks})
     }
 
     const changeTaskStatus = (taskId: string, newIsDone: boolean, todoListId: string) => {
@@ -109,10 +115,20 @@ function App() {
 
 // let filteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter)
 
+    const addTodoList = (title: string) => {
+        let todoList: TodoListType = {
+            id: v1(),
+            filter: 'all',
+            title: title,
+        }
+
+        setTodoLists([todoList, ...todoLists])
+        setTasks({...tasks, [todoList.id]: []})
+    }
 //UI:
     return (
         <div className="App">
-            <AddItemForm addItem={(title: string)=>{alert(title)}} />
+            <AddItemForm addItem={addTodoList}/>
             {
                 todoLists.map(item => {
                     return (
