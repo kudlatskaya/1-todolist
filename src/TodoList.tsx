@@ -1,6 +1,7 @@
-import React, {ChangeEvent, RefObject, useRef, useState} from 'react';
+import React from 'react';
 import TasksList from "./TasksList";
 import {FilterValuesType} from "./App";
+import {AddItemForm} from "./AddItemForm";
 
 type TotoListPropsType = {
     id: string,
@@ -21,37 +22,6 @@ export type TaskType = {
 }
 
 const TodoList = (props: TotoListPropsType) => {
-    // const addTaskInput: RefObject<HTMLInputElement> = useRef(null)
-    //
-    // const addTask = () => {
-    //     if(addTaskInput.current) {
-    //         props.addTask(addTaskInput.current.value)
-    //         addTaskInput.current.value = ""
-    //     }
-    // }
-
-    const [ title, setTitle ] = useState<string>('')
-    const [ error, setError ] = useState<boolean>(false)
-    const maxLengthUserMessage: number = 15
-    const isUserMessageToLong: boolean = title.length > maxLengthUserMessage
-
-    const changeLocalTitle = (e:ChangeEvent<HTMLInputElement>) => {
-        error && setError(false)
-        setTitle(e.currentTarget.value)
-    }
-
-    const addTask = () => {
-        const trimmedTitle = title.trim()
-        if(trimmedTitle) {
-            props.addTask(trimmedTitle, props.id)
-        } else {
-            setError(true)
-        }
-        setTitle('')
-    }
-
-    const onKeyDownAddTask = (e:React.KeyboardEvent<HTMLInputElement>) => {e.key === 'Enter' && addTask()}
-
     const handlerCreator = (filter: FilterValuesType) => {
         return () => props.changeFilterValue(filter, props.id)
     }
@@ -64,34 +34,16 @@ const TodoList = (props: TotoListPropsType) => {
     const setActiveFilterValue = handlerCreator('active')
     const setCompletedFilterValue = handlerCreator('completed')
 
-    const userMaxLengthMessage = isUserMessageToLong && <div style={{color: 'hotpink'}}>Task title is to long</div>
-    const userErrorMessage = error && <div style={{color: 'hotpink'}}>Title is required!</div>
-    const inputErrorClasses = error || isUserMessageToLong ? 'input-error' : ''
-    const isAddBtnDisabled = title.length === 0
+    const addTask = (title: string) => {
+        props.addTask(title, props.id);
+    }
 
     return (
         <div className={'todolist'}>
             <h3>{props.title}
                 <button onClick={removeTodoList}>x</button>
             </h3>
-            <div>
-                {/*<input ref={addTaskInput}/>*/}
-                {/*<button onClick={addTask}>+</button>*/}
-                <input
-                    value={title}
-                    placeholder={'Please input title'}
-                    onChange={changeLocalTitle}
-                    onKeyDown={onKeyDownAddTask}
-                    className={inputErrorClasses}
-                />
-                <button
-                    disabled={isAddBtnDisabled}
-                    onClick={addTask}>+
-                </button>
-
-                {userMaxLengthMessage}
-                {userErrorMessage}
-            </div>
+            <AddItemForm  addItem={addTask}/>
 
             <TasksList
                 id={props.id}
@@ -101,9 +53,15 @@ const TodoList = (props: TotoListPropsType) => {
             />
 
             <div className={'filter-btn-container'}>
-                <button className={props.filter === 'all' ? 'active-filter-btn' : 'filter-btn'} onClick={setAllFilterValue}>All</button>
-                <button className={props.filter === 'active' ? 'active-filter-btn' : 'filter-btn'} onClick={setActiveFilterValue}>Active</button>
-                <button className={props.filter === 'completed' ? 'active-filter-btn' : 'filter-btn'} onClick={setCompletedFilterValue}>Completed</button>
+                <button className={props.filter === 'all' ? 'active-filter-btn' : 'filter-btn'}
+                        onClick={setAllFilterValue}>All
+                </button>
+                <button className={props.filter === 'active' ? 'active-filter-btn' : 'filter-btn'}
+                        onClick={setActiveFilterValue}>Active
+                </button>
+                <button className={props.filter === 'completed' ? 'active-filter-btn' : 'filter-btn'}
+                        onClick={setCompletedFilterValue}>Completed
+                </button>
             </div>
         </div>
     );
