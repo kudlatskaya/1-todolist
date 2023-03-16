@@ -2,6 +2,7 @@ import React from 'react';
 import TasksList from "./TasksList";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 type TotoListPropsType = {
     id: string,
@@ -12,6 +13,8 @@ type TotoListPropsType = {
     removeTask: (taskId: string, todoListId: string) => void,
     addTask: (title: string, todoListId: string) => void,
     changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
+    changeTaskTitle: (taskId: string, newValue: string, todoListId: string) => void,
+    changeTodoListTitle: (todoListId: string, newValue: string ) => void,
     removeTodoList: (todoListId: string) => void,
 }
 
@@ -38,11 +41,17 @@ const TodoList = (props: TotoListPropsType) => {
         props.addTask(title, props.id);
     }
 
+    const onChangeTodoListTitleHandler = (newValue: string) => {
+        props.changeTodoListTitle(props.id, newValue )
+    }
+
     return (
         <div className={'todolist'}>
-            <h3>{props.title}
+            <h3>
+                <EditableSpan title={props.title} onChange={onChangeTodoListTitleHandler} />
                 <button onClick={removeTodoList}>x</button>
             </h3>
+
             <AddItemForm  addItem={addTask}/>
 
             <TasksList
@@ -50,6 +59,7 @@ const TodoList = (props: TotoListPropsType) => {
                 tasks={props.tasks}
                 removeTask={props.removeTask}
                 changeTaskStatus={props.changeTaskStatus}
+                changeTaskTitle={props.changeTaskTitle}
             />
 
             <div className={'filter-btn-container'}>
