@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void,
@@ -46,21 +47,31 @@ export function AddItemForm(props: AddItemFormPropsType) {
     const inputErrorClasses = error || isUserMessageToLong ? 'input-error' : ''
 
     const buttonSettings = {
-        maxWidth: '30px',
-        maxHeight: '30px',
-        minWidth: '30px',
-        minHeight: '30px',
+        maxWidth: '38px',
+        maxHeight: '38px',
+        minWidth: '38px',
+        minHeight: '38px',
     }
 
     return <div>
         {/*<input ref={addTaskInput}/>*/}
         {/*<button onClick={addTask}>+</button>*/}
-        <input
-            value={title}
-            placeholder={'Please input title'}
-            onChange={changeLocalTitle}
-            onKeyDown={onKeyDownAddTask}
-            className={inputErrorClasses}
+        {/*<input*/}
+        {/*    value={title}*/}
+        {/*    placeholder={'Please input title'}*/}
+        {/*    onChange={changeLocalTitle}*/}
+        {/*    onKeyDown={onKeyDownAddTask}*/}
+        {/*    className={inputErrorClasses}*/}
+        {/*/>*/}
+        <TextField id="outlined-basic"
+                   size='small'
+                   value={title}
+                   placeholder={'Please input title'}
+                   onChange={changeLocalTitle}
+                   onKeyDown={onKeyDownAddTask}
+                   label={error ? "Title is required" : "Please type..."}
+                   variant="outlined"
+                   error={error}
         />
         {/*<button*/}
         {/*    disabled={isAddBtnDisabled}*/}
@@ -74,7 +85,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
             +
         </Button>
 
-        {userMaxLengthMessage}
-        {userErrorMessage}
+        {/*{userMaxLengthMessage}*/}
+        {/*{userErrorMessage}*/}
     </div>
 }
