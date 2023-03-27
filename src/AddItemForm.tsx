@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
+import Button from '@mui/material/Button';
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void,
@@ -44,6 +45,13 @@ export function AddItemForm(props: AddItemFormPropsType) {
 
     const inputErrorClasses = error || isUserMessageToLong ? 'input-error' : ''
 
+    const buttonSettings = {
+        maxWidth: '30px',
+        maxHeight: '30px',
+        minWidth: '30px',
+        minHeight: '30px',
+    }
+
     return <div>
         {/*<input ref={addTaskInput}/>*/}
         {/*<button onClick={addTask}>+</button>*/}
@@ -54,10 +62,17 @@ export function AddItemForm(props: AddItemFormPropsType) {
             onKeyDown={onKeyDownAddTask}
             className={inputErrorClasses}
         />
-        <button
-            disabled={isAddBtnDisabled}
-            onClick={addTask}>+
-        </button>
+        {/*<button*/}
+        {/*    disabled={isAddBtnDisabled}*/}
+        {/*    onClick={addTask}>+*/}
+        {/*</button>*/}
+        <Button size="small"
+                variant="contained"
+                onClick={addTask}
+                style={buttonSettings}
+        >
+            +
+        </Button>
 
         {userMaxLengthMessage}
         {userErrorMessage}

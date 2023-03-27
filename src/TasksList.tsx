@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {TaskType} from "./TodoList";
 import {EditableSpan} from "./EditableSpan";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 type TasksListPropsType = {
     id: string,
@@ -30,8 +32,12 @@ const TasksList = (props: TasksListPropsType) => {
                         checked={task.isDone}
                         onChange={onChangeTaskStatusHandler}
                     />
+
                     <EditableSpan title={task.title} onChange={onChangeTitleHandler}/>
-                    <button onClick={removeTaskHandler}>x</button>
+                    {/*<button onClick={removeTaskHandler}>x</button>*/}
+                    <IconButton aria-label="delete" onClick={removeTaskHandler}>
+                        <DeleteIcon />
+                    </IconButton>
                 </li>
             )
         })

@@ -3,6 +3,9 @@ import TasksList from "./TasksList";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 
 type TotoListPropsType = {
     id: string,
@@ -14,7 +17,7 @@ type TotoListPropsType = {
     addTask: (title: string, todoListId: string) => void,
     changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void,
     changeTaskTitle: (taskId: string, newValue: string, todoListId: string) => void,
-    changeTodoListTitle: (todoListId: string, newValue: string ) => void,
+    changeTodoListTitle: (todoListId: string, newValue: string) => void,
     removeTodoList: (todoListId: string) => void,
 }
 
@@ -42,17 +45,20 @@ const TodoList = (props: TotoListPropsType) => {
     }
 
     const onChangeTodoListTitleHandler = (newValue: string) => {
-        props.changeTodoListTitle(props.id, newValue )
+        props.changeTodoListTitle(props.id, newValue)
     }
 
     return (
         <div className={'todolist'}>
             <h3>
-                <EditableSpan title={props.title} onChange={onChangeTodoListTitleHandler} />
-                <button onClick={removeTodoList}>x</button>
+                <EditableSpan title={props.title} onChange={onChangeTodoListTitleHandler}/>
+                {/*<button onClick={removeTodoList}>x</button>*/}
+                <IconButton aria-label="delete" onClick={removeTodoList}>
+                    <DeleteIcon/>
+                </IconButton>
             </h3>
 
-            <AddItemForm  addItem={addTask}/>
+            <AddItemForm addItem={addTask}/>
 
             <TasksList
                 id={props.id}
@@ -63,15 +69,31 @@ const TodoList = (props: TotoListPropsType) => {
             />
 
             <div className={'filter-btn-container'}>
-                <button className={props.filter === 'all' ? 'active-filter-btn' : 'filter-btn'}
-                        onClick={setAllFilterValue}>All
-                </button>
-                <button className={props.filter === 'active' ? 'active-filter-btn' : 'filter-btn'}
-                        onClick={setActiveFilterValue}>Active
-                </button>
-                <button className={props.filter === 'completed' ? 'active-filter-btn' : 'filter-btn'}
-                        onClick={setCompletedFilterValue}>Completed
-                </button>
+                <Button variant={props.filter === 'all' ? 'outlined' : 'contained'}
+                        color="success"
+                        onClick={setAllFilterValue}>
+                    All
+                </Button>
+                <Button variant={props.filter === 'active' ? 'outlined' : 'contained'}
+                        color="error"
+                        onClick={setActiveFilterValue}>
+                    Active
+                </Button>
+                <Button variant={props.filter === 'completed' ? 'outlined' : 'contained'}
+                        color="secondary"
+                        onClick={setCompletedFilterValue}>
+                    Completed
+                </Button>
+
+                {/*<button className={props.filter === 'all' ? 'active-filter-btn' : 'filter-btn'}*/}
+                {/*        onClick={setAllFilterValue}>All*/}
+                {/*</button>*/}
+                {/*<button className={props.filter === 'active' ? 'active-filter-btn' : 'filter-btn'}*/}
+                {/*        onClick={setActiveFilterValue}>Active*/}
+                {/*</button>*/}
+                {/*<button className={props.filter === 'completed' ? 'active-filter-btn' : 'filter-btn'}*/}
+                {/*        onClick={setCompletedFilterValue}>Completed*/}
+                {/*</button>*/}
             </div>
         </div>
     );
