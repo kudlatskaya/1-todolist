@@ -3,6 +3,10 @@ import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import ButtonAppBar from "./ButtonAppBar";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
@@ -87,7 +91,7 @@ function App() {
     const changeTodoListTitle = (todoListId: string, newValue: string) => {
         let _todoList = todoLists.find(item => item.id === todoListId);
 
-        if(_todoList) {
+        if (_todoList) {
             _todoList.title = newValue;
             setTodoLists([...todoLists]);
         }
@@ -135,29 +139,40 @@ function App() {
 //UI:
     return (
         <div className="App">
-            <AddItemForm addItem={addTodoList}/>
-            {
-                todoLists.map(item => {
-                    return (
-                        <TodoList
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            tasks={getFilteredTasks(tasks[item.id], item.filter)}
-                            filter={item.filter}
-                            changeFilterValue={changeFilterValue}
-                            removeTask={removeTask}
-                            addTask={addTask}
-                            changeTaskStatus={changeTaskStatus}
-                            changeTaskTitle={changeTaskTitle}
-                            changeTodoListTitle={changeTodoListTitle}
-                            removeTodoList={removeTodoList}
-                        />
-                    )
-                })
-            }
+            <ButtonAppBar/>
+            <Container>
+                <Grid container style={{padding:'20px'}}>
+                    <AddItemForm addItem={addTodoList}/>
+                </Grid>
+                <Grid container spacing={3}>
+                    {
+                        todoLists.map(item => {
+                            return (
+                                <Grid item>
+                                    <Paper style={{padding:'10px'}} elevation={3}>
+                                        <TodoList
+                                            key={item.id}
+                                            id={item.id}
+                                            title={item.title}
+                                            tasks={getFilteredTasks(tasks[item.id], item.filter)}
+                                            filter={item.filter}
+                                            changeFilterValue={changeFilterValue}
+                                            removeTask={removeTask}
+                                            addTask={addTask}
+                                            changeTaskStatus={changeTaskStatus}
+                                            changeTaskTitle={changeTaskTitle}
+                                            changeTodoListTitle={changeTodoListTitle}
+                                            removeTodoList={removeTodoList}
+                                        />
+                                    </Paper>
+                                </Grid>
+                            )
+                        })
+                    }
+                </Grid>
+            </Container>
         </div>
     );
 }
 
-export default App;
+    export default App;
