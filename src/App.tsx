@@ -3,6 +3,7 @@ import './App.css';
 import {Todolist} from './Todolist';
 import { v1 } from 'uuid';
 import {addTaskAC, removeTaskAC, TasksReducer} from "./reducers/tasksReducer";
+import {FilterReducer} from "./reducers/filterReducer";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -18,18 +19,13 @@ function App() {
 
     function removeTask(id: string) {
         tasksDispatch(removeTaskAC(id))
-        // let filteredTasks = tasks.filter(t => t.id != id);
-        // setTasks(filteredTasks);
     }
 
     function addTask(title: string) {
         tasksDispatch(addTaskAC(title))
-        // let task = { id: v1(), title: title, isDone: false };
-        // let newTasks = [task, ...tasks];
-        // setTasks(newTasks);
     }
 
-    let [filter, setFilter] = useState<FilterValuesType>("all");
+    let [filter, dispatchFilter] = useReducer<FilterValuesType>(FilterReducer, "all");
 
     let tasksForTodolist = tasks;
 
@@ -41,7 +37,7 @@ function App() {
     }
 
     function changeFilter(value: FilterValuesType) {
-        setFilter(value);
+        dispatchFilter(value);
     }
 
     return (
