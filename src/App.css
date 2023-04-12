@@ -1,26 +1,50 @@
-
 .App {
-  padding: 30px;
-  display: flex;
+  /*padding: 30px;*/
+  /*display: flex;*/
 }
 
 .App > div {
-  margin-right: 50px;
+  /*margin-right: 50px;*/
 }
 
-.error {
-  border: red 1px solid;
-}
+/*.todolist {*/
+/*  border: 2px solid hotpink;*/
+/*  border-radius: 5px;*/
+/*  padding: 20px;*/
+/*}*/
 
-.error-message {
-  color: red;
-}
+/*.task {*/
+/*  font-weight: bold;*/
+/*}*/
 
-.active-filter {
-  background-color: aquamarine;
-}
+/*.task-done {*/
+/*  text-decoration: line-through;*/
+/*  opacity: 0.5;*/
+/*}*/
 
-.is-done {
-  opacity: 0.5;
-}
+/*.active-filter-btn {*/
+/*  background-color: hotpink;*/
+/*  font-weight: bold;*/
+/*  color: #FFFFFF;*/
+/*  border: 2px solid hotpink;*/
+/*  border-radius: 5px;*/
+/*}*/
 
+/*.filter-btn {*/
+/*  background-color: cornflowerblue;*/
+/*  font-weight: bold;*/
+/*  color: #FFFFFF;*/
+/*  border: 2px solid cornflowerblue;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+/*.filter-btn-container {*/
+/*  margin-top: 10px;*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*}*/
+
+/*.input-error {*/
+/*  border: 2px solid hotpink;*/
+/*  outline: none;*/
+/*}*/
