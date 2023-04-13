@@ -7,9 +7,7 @@ type EditableSpanPropsType = {
 }
 
 export function EditableSpan(props: EditableSpanPropsType) {
-    // const taskClasses = ['task']
-    // task.isDone && taskClasses.push('task-done')
-    //className={taskClasses.join(' ')}
+
     const {title, onChange} = props;
 
     let [editMode, setEditMode] = useState<boolean>(false);
@@ -33,7 +31,6 @@ export function EditableSpan(props: EditableSpanPropsType) {
 
     return (
         editMode
-            // ? <input type="text" value={newTitle} onBlur={activatedViewMode} onChange={onChangeTitleHandler} autoFocus/>
             ? <TextField id="outlined-basic"
                          size='small'
                          value={newTitle}

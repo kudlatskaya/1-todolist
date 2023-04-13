@@ -28,15 +28,10 @@ const TasksList = (props: TasksListPropsType) => {
 
             return (
                 <li key={task.id}>
-                    {/*<input*/}
-                    {/*    type="checkbox"*/}
-                    {/*    checked={task.isDone}*/}
-                    {/*    onChange={onChangeTaskStatusHandler}*/}
-                    {/*/>*/}
                     <Checkbox checked={task.isDone} onChange={onChangeTaskStatusHandler} />
 
                     <EditableSpan title={task.title} onChange={onChangeTitleHandler}/>
-                    {/*<button onClick={removeTaskHandler}>x</button>*/}
+
                     <IconButton aria-label="delete" onClick={removeTaskHandler}>
                         <DeleteIcon/>
                     </IconButton>
@@ -52,6 +47,4 @@ const TasksList = (props: TasksListPropsType) => {
     );
 };
 
-
-//31.39
 export default TasksList;

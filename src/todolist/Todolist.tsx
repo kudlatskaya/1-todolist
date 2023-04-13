@@ -52,7 +52,7 @@ const TodoList = (props: TotoListPropsType) => {
         <div className={'todolist'}>
             <h3>
                 <EditableSpan title={props.title} onChange={onChangeTodoListTitleHandler}/>
-                {/*<button onClick={removeTodoList}>x</button>*/}
+
                 <IconButton aria-label="delete" onClick={removeTodoList}>
                     <DeleteIcon/>
                 </IconButton>
@@ -84,16 +84,6 @@ const TodoList = (props: TotoListPropsType) => {
                         onClick={setCompletedFilterValue}>
                     Completed
                 </Button>
-
-                {/*<button className={props.filter === 'all' ? 'active-filter-btn' : 'filter-btn'}*/}
-                {/*        onClick={setAllFilterValue}>All*/}
-                {/*</button>*/}
-                {/*<button className={props.filter === 'active' ? 'active-filter-btn' : 'filter-btn'}*/}
-                {/*        onClick={setActiveFilterValue}>Active*/}
-                {/*</button>*/}
-                {/*<button className={props.filter === 'completed' ? 'active-filter-btn' : 'filter-btn'}*/}
-                {/*        onClick={setCompletedFilterValue}>Completed*/}
-                {/*</button>*/}
             </div>
         </div>
     );
