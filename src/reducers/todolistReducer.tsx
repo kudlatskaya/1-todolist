@@ -1,5 +1,6 @@
-import {FilterValuesType, TodoListType} from "../App";
+import {FilterValuesType, TasksStateType, TodoListType} from "../App";
 import {v1} from "uuid";
+import {TasksReducer} from "./tasksReducer";
 
 type ActionType = AddTodoListACType
     | RemoveTodoListACType
@@ -17,6 +18,7 @@ export const todolistReducer = (state: TodoListType[], action: ActionType): Todo
 
             delete tasks[todoListId];
             setTasks({...tasks})*/
+            // TasksReducer(state: TasksStateType, action: ActionType)
 
             return [...state, {id: v1(), title: action.payload.title, filter: 'all'}];
 

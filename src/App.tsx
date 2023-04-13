@@ -8,11 +8,19 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import {
+    addTodoListAC,
     changeTodoListFilterValueAC,
-    changeTodoListTitleAC,
+    changeTodoListTitleAC, removeTodoListAC,
     todolistReducer,
 } from "./reducers/todolistReducer";
-import {addTaskAC, removeTaskAC, TasksReducer} from "./reducers/tasksReducer";
+import {
+    addEmptyTasksAC,
+    addTaskAC,
+    changeTaskStatusAC,
+    changeTaskTitleAC,
+    removeTaskAC, removeTasksAC,
+    TasksReducer
+} from "./reducers/tasksReducer";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
@@ -71,29 +79,31 @@ function App() {
     }
 
     const changeTaskStatus = (taskId: string, newIsDone: boolean, todoListId: string) => {
-        let todoList = tasks[todoListId];
-
-        let _todoList = todoList.map(item =>
-            item.id === taskId
-                ? {...item, isDone: newIsDone}
-                : item
-        )
-        tasks[todoListId] = _todoList;
-
-        setTasks({...tasks})
+        // let todoList = tasks[todoListId];
+        //
+        // let _todoList = todoList.map(item =>
+        //     item.id === taskId
+        //         ? {...item, isDone: newIsDone}
+        //         : item
+        // )
+        // tasks[todoListId] = _todoList;
+        //
+        // setTasks({...tasks})
+        dispatchTasks(changeTaskStatusAC(taskId, newIsDone, todoListId))
     }
 
     const changeTaskTitle = (taskId: string, newValue: string, todoListId: string) => {
-        let todoList = tasks[todoListId];
-
-        let _todoList = todoList.map(item =>
-            item.id === taskId
-                ? {...item, title: newValue}
-                : item
-        )
-        tasks[todoListId] = _todoList;
-
-        setTasks({...tasks})
+        // let todoList = tasks[todoListId];
+        //
+        // let _todoList = todoList.map(item =>
+        //     item.id === taskId
+        //         ? {...item, title: newValue}
+        //         : item
+        // )
+        // tasks[todoListId] = _todoList;
+        //
+        // setTasks({...tasks})
+        dispatchTasks(changeTaskTitleAC(taskId, newValue, todoListId))
     }
 
     const changeTodoListTitle = (todoListId: string, newValue: string) => {
@@ -129,22 +139,27 @@ function App() {
     }
 
     const removeTodoList = (todoListId: string) => {
-        let filteredTodoList = todoLists.filter(item => item.id !== todoListId);
-        setTodoLists(filteredTodoList);
-
-        delete tasks[todoListId];
-        setTasks({...tasks})
+        // let filteredTodoList = todoLists.filter(item => item.id !== todoListId);
+        // setTodoLists(filteredTodoList);
+        //
+        // delete tasks[todoListId];
+        // setTasks({...tasks})
+        dispatchTasks(removeTasksAC(todoListId))
+        dispatchTodoLists(removeTodoListAC(todoListId))
     }
 
     const addTodoList = (title: string) => {
-        let todoList: TodoListType = {
-            id: v1(),
-            filter: 'all',
-            title: title,
-        }
-
-        setTodoLists([todoList, ...todoLists])
-        setTasks({...tasks, [todoList.id]: []})
+        // let todoList: TodoListType = {
+        //     id: v1(),
+        //     filter: 'all',
+        //     title: title,
+        // }
+        //
+        // setTodoLists([todoList, ...todoLists])
+        // setTasks({...tasks, [todoList.id]: []})
+        dispatchTasks(addEmptyTasksAC(v1()))
+        dispatchTodoLists(addTodoListAC(title))
+        // console.log(tasks)
     }
 
 //UI:
