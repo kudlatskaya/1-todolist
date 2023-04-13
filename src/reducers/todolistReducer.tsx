@@ -17,6 +17,7 @@ export const todolistReducer = (state: TodoListType[], action: ActionType): Todo
 
             delete tasks[todoListId];
             setTasks({...tasks})*/
+
             return [...state, {id: v1(), title: action.payload.title, filter: 'all'}];
 
         case 'REMOVE_TODOLIST':
