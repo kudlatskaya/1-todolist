@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import TodoList, {TaskType} from "./todolist/Todolist";
 import {v1} from "uuid";
@@ -7,6 +7,12 @@ import ButtonAppBar from "./components/ButtonAppBar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import {
+    changeTodoListFilterValueAC,
+    changeTodoListTitleAC,
+    todolistReducer,
+    TodolistReducer
+} from "./reducers/todolistReducer";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
@@ -26,7 +32,7 @@ function App() {
     let todoListId1 = v1();
     let todoListId2 = v1();
 
-    let [todoLists, setTodoLists] = useState<Array<TodoListType>>([
+    let [todoLists, dispatchTodoLists] = useReducer(todolistReducer, [
         {id: todoListId1, title: 'What to learn', filter: 'all'},
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ])
@@ -89,21 +95,24 @@ function App() {
     }
 
     const changeTodoListTitle = (todoListId: string, newValue: string) => {
-        let _todoList = todoLists.find(item => item.id === todoListId);
+        // let _todoList = todoLists.find(item => item.id === todoListId);
+        //
+        // if (_todoList) {
+        //     _todoList.title = newValue;
+        //     dispatchTodoLists(changeTodoListTitleAC(todoListId, newValue));
+        // }
 
-        if (_todoList) {
-            _todoList.title = newValue;
-            setTodoLists([...todoLists]);
-        }
+        dispatchTodoLists(changeTodoListTitleAC(todoListId, newValue));
     }
 
     const changeFilterValue = (filter: FilterValuesType, todoListId: string) => {
-        let todoList = todoLists.find(item => item.id == todoListId)
-
-        if (todoList) {
-            todoList.filter = filter;
-            setTodoLists([...todoLists]);
-        }
+        // let todoList = todoLists.find(item => item.id == todoListId)
+        //
+        // if (todoList) {
+        //     todoList.filter = filter;
+        //     setTodoLists([...todoLists]);
+        // }
+        dispatchTodoLists(changeTodoListFilterValueAC(filter, todoListId));
     }
 
     const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
