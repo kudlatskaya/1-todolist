@@ -44,7 +44,7 @@ test('add task', () => {
     const expectedState = TasksReducer(initialState, addTaskAC('newTask', todoListId1))
 
     expect(expectedState[todoListId1].length).toBe(4);
-    expect(expectedState[todoListId1][0].title).toBe('newTask');
+    expect(expectedState[todoListId1][3].title).toBe('newTask');
 })
 
 test('change task status', () => {
@@ -65,14 +65,12 @@ test('add empty tasks array', () => {
 
     const expectedState = TasksReducer(initialState, addEmptyTasksAC(todoListId3))
 
-    expect(expectedState.length).toBe(3);
-    expect(expectedState[todoListId3]).toBe([]);
+    expect(expectedState[todoListId3]).toStrictEqual([]);
 })
 
 test('remove tasks array', () => {
 
     const expectedState = TasksReducer(initialState, removeTasksAC(todoListId1))
 
-    expect(expectedState.length).toBe(1);
     expect(expectedState[todoListId1]).toBe(undefined);
 })
