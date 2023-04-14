@@ -1,74 +1,78 @@
 import {v1} from "uuid";
-import {TodoListType} from "../App";
+import {TasksStateType} from "../App";
 import {
-    addTodoListAC,
-    changeTodoListFilterValueAC,
-    changeTodoListTitleAC,
-    removeTodoListAC,
-    todolistReducer
-} from "./todolistReducer";
+    addEmptyTasksAC,
+    addTaskAC,
+    changeTaskStatusAC,
+    changeTaskTitleAC,
+    removeTaskAC, removeTasksAC,
+    TasksReducer
+} from "./tasksReducer";
 
-test('remove todolist', () => {
-    let todoListId1 = v1();
-    let todoListId2 = v1();
+let todoListId1 = v1();
+let todoListId2 = v1();
+let todoListId3 = v1();
 
-    const initialState: TodoListType[] = [
-        {id: todoListId1, title: 'What to learn', filter: 'all'},
-        {id: todoListId2, title: 'What to buy', filter: 'all'},
-    ]
+let taskId1 = v1();
+let taskId2 = v1();
+let taskId3 = v1();
+let taskId4 = v1();
+let taskId5 = v1();
 
-    const expectedState = todolistReducer(initialState, removeTodoListAC(todoListId1))
+const initialState: TasksStateType = {
+    [todoListId1]: [
+        {id: taskId1, title: "HTML & CSS", isDone: true},
+        {id: taskId2, title: "ES6 & TS", isDone: true},
+        {id: taskId3, title: "React & Redux", isDone: false},
+    ],
+    [todoListId2]: [
+        {id: taskId4, title: "Book", isDone: false},
+        {id: taskId5, title: "Milk", isDone: true},
+    ],
+}
 
-    expect(expectedState.length).toBe(1);
-    expect(expectedState[0].id).toBe(todoListId2);
+test('remove task', () => {
 
+    const expectedState = TasksReducer(initialState, removeTaskAC(taskId1, todoListId1))
+
+    expect(expectedState[todoListId1].length).toBe(2);
+    expect(expectedState[todoListId1][0].id).toBe(taskId2);
 })
 
-test('add todolist', () => {
-    let todoListId1 = v1();
-    let todoListId2 = v1();
-    let todoListId3 = v1();
+test('add task', () => {
 
-    const initialState: TodoListType[] = [
-        {id: todoListId1, title: 'What to learn', filter: 'all'},
-        {id: todoListId2, title: 'What to buy', filter: 'all'},
-    ]
+    const expectedState = TasksReducer(initialState, addTaskAC('newTask', todoListId1))
 
-    const expectedState = todolistReducer(initialState, addTodoListAC('newTodoList', todoListId3))
+    expect(expectedState[todoListId1].length).toBe(4);
+    expect(expectedState[todoListId1][0].title).toBe('newTask');
+})
+
+test('change task status', () => {
+
+    const expectedState = TasksReducer(initialState, changeTaskStatusAC(taskId1, false, todoListId1))
+
+    expect(expectedState[todoListId1][0].isDone).toBe(false);
+})
+
+test('change task title', () => {
+
+    const expectedState = TasksReducer(initialState, changeTaskTitleAC(taskId1, 'newTitle', todoListId1))
+
+    expect(expectedState[todoListId1][0].title).toBe('newTitle');
+})
+
+test('add empty tasks array', () => {
+
+    const expectedState = TasksReducer(initialState, addEmptyTasksAC(todoListId3))
 
     expect(expectedState.length).toBe(3);
-    expect(expectedState[2].id).toBe(todoListId3);
-
+    expect(expectedState[todoListId3]).toBe([]);
 })
 
-test('change todolist title', () => {
-    let todoListId1 = v1();
-    let todoListId2 = v1();
+test('remove tasks array', () => {
 
-    const initialState: TodoListType[] = [
-        {id: todoListId1, title: 'What to learn', filter: 'all'},
-        {id: todoListId2, title: 'What to buy', filter: 'all'},
-    ]
+    const expectedState = TasksReducer(initialState, removeTasksAC(todoListId1))
 
-    const expectedState = todolistReducer(initialState, changeTodoListTitleAC( todoListId1, 'newTodoList'))
-
-    expect(expectedState.length).toBe(2);
-    expect(expectedState[0].title).toBe('newTodoList');
-
-})
-
-test('change todolist filter', () => {
-    let todoListId1 = v1();
-    let todoListId2 = v1();
-
-    const initialState: TodoListType[] = [
-        {id: todoListId1, title: 'What to learn', filter: 'all'},
-        {id: todoListId2, title: 'What to buy', filter: 'all'},
-    ]
-
-    const expectedState = todolistReducer(initialState, changeTodoListFilterValueAC( 'active', todoListId1))
-
-    expect(expectedState.length).toBe(2);
-    expect(expectedState[0].filter).toBe('active');
-
+    expect(expectedState.length).toBe(1);
+    expect(expectedState[todoListId1]).toBe(undefined);
 })
