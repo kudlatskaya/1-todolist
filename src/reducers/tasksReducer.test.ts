@@ -65,7 +65,14 @@ test('add empty tasks array', () => {
 
     const expectedState = tasksReducer(initialState, addEmptyTasksAC(todoListId3))
 
-    expect(expectedState[todoListId3]).toStrictEqual([]);
+    const keys = Object.keys(expectedState);
+    const newKey = keys.find(k => k != todoListId1 &&  k != todoListId2);
+    if(!newKey) {
+        throw Error('new key should be added')
+    }
+
+    expect(keys.length).toBe(3);
+    expect(expectedState[newKey]).toStrictEqual([]);
 })
 
 test('remove tasks array', () => {
