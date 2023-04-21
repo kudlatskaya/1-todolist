@@ -14,11 +14,11 @@ import {
     todolistReducer,
 } from "./reducers/todolistReducer";
 import {
-    addEmptyTasksAC,
+    addTodolistAC,
     addTaskAC,
     changeTaskStatusAC,
     changeTaskTitleAC,
-    removeTaskAC, removeTasksAC,
+    removeTaskAC, removeTodolistAC,
     tasksReducer
 } from "./reducers/tasksReducer";
 
@@ -93,13 +93,13 @@ function App() {
     }
 
     const removeTodoList = (todoListId: string) => {
-        dispatchTasks(removeTasksAC(todoListId))
+        dispatchTasks(removeTodolistAC(todoListId))
         dispatchTodoLists(removeTodoListAC(todoListId))
     }
 
     const addTodoList = (title: string) => {
         let todoListId = v1()
-        dispatchTasks(addEmptyTasksAC(todoListId))
+        dispatchTasks(addTodolistAC(todoListId))
         dispatchTodoLists(addTodoListAC(title, todoListId))
     }
 

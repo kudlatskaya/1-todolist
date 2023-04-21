@@ -7,6 +7,8 @@ import {
     removeTodoListAC,
     todolistReducer
 } from "./todolistReducer";
+import {tasksReducer} from "./tasksReducer";
+import {initialState as initialTasksState} from './tasksReducer.test'
 
 test('remove todolist', () => {
     let todoListId1 = v1();
@@ -27,17 +29,21 @@ test('remove todolist', () => {
 test('add todolist', () => {
     let todoListId1 = v1();
     let todoListId2 = v1();
-    let todoListId3 = v1();
+     let todoListId3 = v1();
 
     const initialState: TodoListType[] = [
         {id: todoListId1, title: 'What to learn', filter: 'all'},
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ]
+    const action = addTodoListAC(todoListId3, 'newTodoList');
 
-    const expectedState = todolistReducer(initialState, addTodoListAC('newTodoList', todoListId3))
+    const expectedState = todolistReducer(initialState, action)
+    const expectedTasksState = tasksReducer(initialTasksState, action)
+    const keys = Object.keys(expectedTasksState);
 
     expect(expectedState.length).toBe(3);
-    expect(expectedState[2].id).toBe(todoListId3);
+    expect(keys[2]).toBe(action.payload.id);
+    expect(expectedState[2].id).toBe(action.payload.id);
 
 })
 

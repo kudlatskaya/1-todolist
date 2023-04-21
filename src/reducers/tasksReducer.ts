@@ -1,12 +1,13 @@
 import {v1} from "uuid";
 import {TasksStateType} from "../App";
+import {AddTodoListACType} from './todolistReducer'
 
 type ActionType = RemoveTaskACType
     | AddTaskACType
     | ChangeTaskStatusACType
     | ChangeTaskTitleACType
-    | AddEmptyTasksACType
-    | RemoveTasksACType
+    | AddTodoListACType
+    | RemoveTodolistACType
 
 export const tasksReducer = (state: TasksStateType, action: ActionType): TasksStateType => {
     switch (action.type) {
@@ -52,10 +53,10 @@ export const tasksReducer = (state: TasksStateType, action: ActionType): TasksSt
             return {...state, [action.payload.todoListId]: newTasks};
         }
 
-        case "ADD-EMPTY-TASKS":
-            return {...state, [action.payload.todoListId]: []};
+        case "ADD_TODOLIST":
+            return {...state, [action.payload.id]: []};
 
-        case "REMOVE-TASKS":
+        case "REMOVE-TODOLIST":
             let _state = {...state}
             delete _state[action.payload.todoListId]
             return _state;
@@ -115,22 +116,23 @@ export const changeTaskTitleAC = (taskId: string, title: string, todoListId: str
     } as const
 }
 
-type AddEmptyTasksACType = ReturnType<typeof addEmptyTasksAC>
+// type AddTodolistACType = ReturnType<typeof addTodolistAC>
+//
+// export const addTodolistAC = (todoListId: string, title: string) => {
+//     return {
+//         type: 'ADD-TODOLIST',
+//         payload: {
+//             todoListId,
+//             title,
+//         }
+//     } as const
+// }
 
-export const addEmptyTasksAC = (todoListId: string) => {
+type RemoveTodolistACType = ReturnType<typeof removeTodolistAC>
+
+export const removeTodolistAC = (todoListId: string) => {
     return {
-        type: 'ADD-EMPTY-TASKS',
-        payload: {
-            todoListId,
-        }
-    } as const
-}
-
-type RemoveTasksACType = ReturnType<typeof removeTasksAC>
-
-export const removeTasksAC = (todoListId: string) => {
-    return {
-        type: 'REMOVE-TASKS',
+        type: 'REMOVE-TODOLIST',
         payload: {
             todoListId,
         }
