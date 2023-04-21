@@ -19,17 +19,21 @@ test('remove todolist', () => {
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ]
 
-    const expectedState = todolistReducer(initialState, removeTodoListAC(todoListId1))
+    const action = removeTodoListAC(todoListId1);
+
+    const expectedState = todolistReducer(initialState, action)
+    const expectedTasksState = tasksReducer(initialTasksState, action)
+    const keys = Object.keys(expectedTasksState);
 
     expect(expectedState.length).toBe(1);
+    expect(keys[2]).toBe(undefined);
     expect(expectedState[0].id).toBe(todoListId2);
-
 })
 
 test('add todolist', () => {
     let todoListId1 = v1();
     let todoListId2 = v1();
-     let todoListId3 = v1();
+    let todoListId3 = v1();
 
     const initialState: TodoListType[] = [
         {id: todoListId1, title: 'What to learn', filter: 'all'},
