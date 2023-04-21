@@ -1,13 +1,13 @@
 import {v1} from "uuid";
 import {TasksStateType} from "../App";
 import {
-    addTodolistAC,
     addTaskAC,
     changeTaskStatusAC,
     changeTaskTitleAC,
-    removeTaskAC, removeTodolistAC,
+    removeTaskAC,
     tasksReducer
 } from "./tasksReducer";
+import {addTodoListAC, removeTodoListAC} from './todolistReducer';
 
 let todoListId1 = v1();
 let todoListId2 = v1();
@@ -63,7 +63,7 @@ test('change task title', () => {
 
 test('add empty tasks array', () => {
 
-    const expectedState = tasksReducer(initialState, addTodolistAC(todoListId3))
+    const expectedState = tasksReducer(initialState, addTodoListAC(todoListId3, 'newTodoListTitle'))
 
     const keys = Object.keys(expectedState);
     const newKey = keys.find(k => k != todoListId1 &&  k != todoListId2);
@@ -77,7 +77,7 @@ test('add empty tasks array', () => {
 
 test('remove tasks array', () => {
 
-    const expectedState = tasksReducer(initialState, removeTodolistAC(todoListId1))
+    const expectedState = tasksReducer(initialState, removeTodoListAC(todoListId1))
 
     expect(expectedState[todoListId1]).toBe(undefined);
 })

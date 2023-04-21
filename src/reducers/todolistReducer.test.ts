@@ -64,7 +64,6 @@ test('change todolist title', () => {
 
     expect(expectedState.length).toBe(2);
     expect(expectedState[0].title).toBe('newTodoList');
-
 })
 
 test('change todolist filter', () => {

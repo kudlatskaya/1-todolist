@@ -60,6 +60,8 @@ export const tasksReducer = (state: TasksStateType, action: ActionType): TasksSt
             let _state = {...state}
             delete _state[action.payload.id]
             return _state;
+            // const {[action.payload.id]:[], ...rest} = {...state}
+            // return rest
 
         default:
             return state;
