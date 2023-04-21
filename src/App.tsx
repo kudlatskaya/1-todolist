@@ -19,7 +19,7 @@ import {
     changeTaskStatusAC,
     changeTaskTitleAC,
     removeTaskAC, removeTasksAC,
-    TasksReducer
+    tasksReducer
 } from "./reducers/tasksReducer";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
@@ -45,7 +45,7 @@ function App() {
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, dispatchTasks] = useReducer(TasksReducer, {
+    let [tasks, dispatchTasks] = useReducer(tasksReducer, {
         [todoListId1]: [
             {id: v1(), title: "HTML & CSS", isDone: true},
             {id: v1(), title: "ES6 & TS", isDone: true},
