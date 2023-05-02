@@ -5,7 +5,9 @@ export type ActionType = AddTodoListACType
     | ChangeTodoListTitleACType
     | ChangeTodoListFilterValueACType;
 
-export const todolistReducer = (state: TodoListType[], action: ActionType): TodoListType[] => {
+const initialState: TodoListType[] = []
+
+export const todolistReducer = (state: TodoListType[] = initialState, action: ActionType): TodoListType[] => {
     switch (action.type) {
 
         case 'ADD_TODOLIST':
