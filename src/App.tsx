@@ -1,4 +1,4 @@
-import {useReducer} from 'react';
+import {Reducer, useReducer} from 'react';
 import './App.css';
 import TodoList, {TaskType} from "./todolist/Todolist";
 import {v1} from "uuid";
@@ -8,12 +8,14 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import {
+    ActionType as TodolistActionType,
     addTodoListAC,
     changeTodoListFilterValueAC,
     changeTodoListTitleAC, removeTodoListAC,
     todolistReducer,
 } from "./reducers/todolistReducer";
 import {
+    ActionType as TasksActionType,
     addTaskAC,
     changeTaskStatusAC,
     changeTaskTitleAC,
@@ -39,12 +41,12 @@ function App() {
     let todoListId1 = v1();
     let todoListId2 = v1();
 
-    let [todoLists, dispatchTodoLists] = useReducer(todolistReducer, [
+    let [todoLists, dispatchTodoLists] = useReducer<Reducer<TodoListType[], TodolistActionType>>(todolistReducer, [
         {id: todoListId1, title: 'What to learn', filter: 'all'},
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, dispatchTasks] = useReducer(tasksReducer, {
+    let [tasks, dispatchTasks] = useReducer<Reducer<TasksStateType, TasksActionType>>(tasksReducer, {
         [todoListId1]: [
             {id: v1(), title: "HTML & CSS", isDone: true},
             {id: v1(), title: "ES6 & TS", isDone: true},

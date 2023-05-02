@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {TasksStateType} from "../App";
 import {AddTodoListACType, RemoveTodoListACType} from './todolistReducer'
 
-type ActionType = RemoveTaskACType
+export type ActionType = RemoveTaskACType
     | AddTaskACType
     | ChangeTaskStatusACType
     | ChangeTaskTitleACType
