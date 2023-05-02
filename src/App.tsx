@@ -94,14 +94,15 @@ function App() {
     }
 
     const removeTodoList = (todoListId: string) => {
-        dispatchTasks(removeTodoListAC(todoListId))
-        dispatchTodoLists(removeTodoListAC(todoListId))
+        const action = removeTodoListAC(todoListId)
+        dispatchTasks(action)
+        dispatchTodoLists(action)
     }
 
     const addTodoList = (title: string) => {
-        let todoListId = v1()
-        dispatchTasks(addTodoListAC(todoListId, title))
-        dispatchTodoLists(addTodoListAC(todoListId, title))
+        const action = addTodoListAC(v1(), title)
+        dispatchTasks(action)
+        dispatchTodoLists(action)
     }
 
 //UI:
