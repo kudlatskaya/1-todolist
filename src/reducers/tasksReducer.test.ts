@@ -9,27 +9,42 @@ import {
 } from "./tasksReducer";
 import {addTodoListAC, removeTodoListAC} from './todolistReducer';
 
-let todoListId1 = v1();
-let todoListId2 = v1();
-let todoListId3 = v1();
+let todoListId1: string
+let todoListId2: string
+let todoListId3: string
 
-let taskId1 = v1();
-let taskId2 = v1();
-let taskId3 = v1();
-let taskId4 = v1();
-let taskId5 = v1();
+let taskId1: string
+let taskId2: string
+let taskId3: string
+let taskId4: string
+let taskId5: string
 
-export const initialState: TasksStateType = {
-    [todoListId1]: [
-        {id: taskId1, title: "HTML & CSS", isDone: true},
-        {id: taskId2, title: "ES6 & TS", isDone: true},
-        {id: taskId3, title: "React & Redux", isDone: false},
-    ],
-    [todoListId2]: [
-        {id: taskId4, title: "Book", isDone: false},
-        {id: taskId5, title: "Milk", isDone: true},
-    ],
-}
+export let initialState: TasksStateType
+
+beforeEach(() => {
+
+    todoListId1 = v1();
+    todoListId2 = v1();
+    todoListId3 = v1();
+
+    taskId1 = v1();
+    taskId2 = v1();
+    taskId3 = v1();
+    taskId4 = v1();
+    taskId5 = v1();
+
+    initialState = {
+        [todoListId1]: [
+            {id: taskId1, title: "HTML & CSS", isDone: true},
+            {id: taskId2, title: "ES6 & TS", isDone: true},
+            {id: taskId3, title: "React & Redux", isDone: false},
+        ],
+        [todoListId2]: [
+            {id: taskId4, title: "Book", isDone: false},
+            {id: taskId5, title: "Milk", isDone: true},
+        ],
+    }
+})
 
 test('remove task', () => {
 
