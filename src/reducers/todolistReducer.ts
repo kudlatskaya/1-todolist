@@ -5,11 +5,17 @@ type ActionType = AddTodoListACType
     | ChangeTodoListTitleACType
     | ChangeTodoListFilterValueACType;
 
-export const todolistReducer = (state: TodoListType[], action: ActionType): TodoListType[] => {
+export const todolistReducer = (state: TodoListType[],
+                                action: ActionType): TodoListType[] => {
     switch(action.type) {
 
         case 'ADD_TODOLIST':
-            return [...state, {id: action.payload.id, title: action.payload.title, filter: 'all'}];
+            return [...state, {
+                                id: action.payload.id,
+                                title: action.payload.title,
+                                filter: 'all'
+                              }
+                              ];
 
         case 'REMOVE_TODOLIST':
             return state.filter(item => item.id !== action.payload.id);
@@ -87,3 +93,4 @@ export const changeTodoListFilterValueAC = (filter: FilterValuesType, id: string
         }
     } as const
 }
+

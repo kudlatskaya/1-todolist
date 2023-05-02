@@ -60,8 +60,6 @@ export const tasksReducer = (state: TasksStateType, action: ActionType): TasksSt
             let _state = {...state}
             delete _state[action.payload.id]
             return _state;
-            // const {[action.payload.id]:[], ...rest} = {...state}
-            // return rest
 
         default:
             return state;
@@ -94,7 +92,8 @@ export const addTaskAC = (title: string, todoListId: string) => {
 
 type ChangeTaskStatusACType = ReturnType<typeof changeTaskStatusAC>
 
-export const changeTaskStatusAC = (taskId: string, isDone: boolean, todoListId: string) => {
+export const changeTaskStatusAC = (taskId: string,
+                                   isDone: boolean, todoListId: string) => {
     return {
         type: 'CHANGE-TASK-STATUS',
         payload: {
@@ -107,7 +106,8 @@ export const changeTaskStatusAC = (taskId: string, isDone: boolean, todoListId: 
 
 type ChangeTaskTitleACType = ReturnType<typeof changeTaskTitleAC>
 
-export const changeTaskTitleAC = (taskId: string, title: string, todoListId: string) => {
+export const changeTaskTitleAC = (taskId: string,
+                                  title: string, todoListId: string) => {
     return {
         type: 'CHANGE-TASK-TITLE',
         payload: {

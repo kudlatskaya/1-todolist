@@ -33,7 +33,8 @@ export const initialState: TasksStateType = {
 
 test('remove task', () => {
 
-    const expectedState = tasksReducer(initialState, removeTaskAC(taskId1, todoListId1))
+    const expectedState = tasksReducer(initialState,
+                                        removeTaskAC(taskId1, todoListId1))
 
     expect(expectedState[todoListId1].length).toBe(2);
     expect(expectedState[todoListId1][0].id).toBe(taskId2);
@@ -41,7 +42,8 @@ test('remove task', () => {
 
 test('add task', () => {
 
-    const expectedState = tasksReducer(initialState, addTaskAC('newTask', todoListId1))
+    const expectedState = tasksReducer(initialState,
+                                    addTaskAC('newTask', todoListId1))
 
     expect(expectedState[todoListId1].length).toBe(4);
     expect(expectedState[todoListId1][3].title).toBe('newTask');
@@ -49,21 +51,23 @@ test('add task', () => {
 
 test('change task status', () => {
 
-    const expectedState = tasksReducer(initialState, changeTaskStatusAC(taskId1, false, todoListId1))
+    const expectedState = tasksReducer(initialState,
+                                changeTaskStatusAC(taskId1, false, todoListId1))
 
     expect(expectedState[todoListId1][0].isDone).toBe(false);
 })
 
 test('change task title', () => {
 
-    const expectedState = tasksReducer(initialState, changeTaskTitleAC(taskId1, 'newTitle', todoListId1))
+    const expectedState = tasksReducer(initialState,
+                            changeTaskTitleAC(taskId1, 'newTitle', todoListId1))
 
     expect(expectedState[todoListId1][0].title).toBe('newTitle');
 })
 
 test('add empty tasks array', () => {
-
-    const expectedState = tasksReducer(initialState, addTodoListAC(todoListId3, 'newTodoListTitle'))
+    const expectedState = tasksReducer(initialState,
+                addTodoListAC(todoListId3, 'newTodoListTitle'))
 
     const keys = Object.keys(expectedState);
     const newKey = keys.find(k => k != todoListId1 &&  k != todoListId2);
@@ -76,8 +80,9 @@ test('add empty tasks array', () => {
 })
 
 test('remove tasks array', () => {
-
-    const expectedState = tasksReducer(initialState, removeTodoListAC(todoListId1))
+    const expectedState = tasksReducer(initialState,
+                removeTodoListAC(todoListId1))
 
     expect(expectedState[todoListId1]).toBe(undefined);
 })
+
