@@ -102,7 +102,7 @@ function App() {
                 </Grid>
                 <Grid container spacing={3}>
                     {
-                        todoLists.map((item, index) => {
+                        todolists.map((item, index) => {
                             return (
                                 <Grid item key={index}>
                                     <Paper style={{padding:'10px'}} elevation={3}>
